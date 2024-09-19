@@ -38,15 +38,15 @@ export const orthographyUseCases = async (openai: OpenAI, options: Options) => {
           {language: "portuguese", translation: string}
           ],
           suggestions: [
-          {language: "american_english", suggestion_1: string},
-          {language: "american_english", suggestion_2: string},
-          {language: "american_english", suggestion_3: string},
-          {language: "brazilian_portuguese", suggestion_1: string},
-          {language: "brazilian_portuguese", suggestion_2: string},
-          {language: "brazilian_portuguese", suggestion_3: string},
-          {language: "argentine_lunfardo", suggestion1: string},
-          {language: "argentine_lunfardo", suggestion2: string},
-          {language: "argentine_lunfardo", suggestion3: string}
+          {language: "american_english", suggestion: string},
+          {language: "american_english", suggestion: string},
+          {language: "american_english", suggestion: string},
+          {language: "brazilian_portuguese", suggestion: string},
+          {language: "brazilian_portuguese", suggestion: string},
+          {language: "brazilian_portuguese", suggestion: string},
+          {language: "argentine_lunfardo", suggestion: string},
+          {language: "argentine_lunfardo", suggestion: string},
+          {language: "argentine_lunfardo", suggestion: string}
           ]
           
         }
