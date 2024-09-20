@@ -13,6 +13,8 @@ export const prosConsDicusserStreamUseCase = async (
   return await openai.chat.completions.create({
     stream: true,
     model: 'gpt-4o-mini',
+    temperature: 0.8,
+    max_tokens: 1000,
     messages: [
       {
         role: 'system',
