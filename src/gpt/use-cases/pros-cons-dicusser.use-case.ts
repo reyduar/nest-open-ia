@@ -41,7 +41,7 @@ export const prosConsDicusserUseCase = async (
   const completion = await openai.chat.completions.create({
     model: 'gpt-4o-mini',
     temperature: 0.8,
-    max_tokens: 1000,
+    max_tokens: 500,
 
     messages: [
       {
@@ -63,5 +63,5 @@ export const prosConsDicusserUseCase = async (
 
   // const jsonResp = JSON.parse(completion.choices[0].message.content);
 
-  return completion.choices[0].message.content;
+  return completion.choices[0].message;
 };
