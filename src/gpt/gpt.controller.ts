@@ -1,8 +1,7 @@
 import { Body, Controller, HttpStatus, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { GptService } from './gpt.service';
-import { OrthographyDto, ProsConsDiscusserDto } from './dtos';
-import { prosConsDicusserStreamUseCase } from './use-cases/pros-cons-dicusser.use-case';
+import { OrthographyDto, ProsConsDiscusserDto, SummarizationDto } from './dtos';
 
 @Controller('gpt')
 export class GptController {
@@ -33,5 +32,9 @@ export class GptController {
       res.write(piece);
     }
     res.end();
+  }
+  @Post('summarization-articles')
+  summarization(@Body() summarizationDto: SummarizationDto) {
+    return this.gptService.summarization(summarizationDto);
   }
 }
