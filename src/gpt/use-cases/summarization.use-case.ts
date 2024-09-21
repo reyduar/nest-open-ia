@@ -5,7 +5,7 @@ interface Options {
   articles: string[];
 }
 
-export const SummarizationUseCases = async (
+export const summarizationUseCases = async (
   openai: OpenAI,
   options: Options,
 ) => {
