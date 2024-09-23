@@ -9,8 +9,10 @@ import {
   summarizationUseCases,
   translateUseCase,
   textToAudioUseCase,
+  audioToTextUseCase,
 } from './use-cases';
 import {
+  AudioToTextDto,
   OrthographyDto,
   ProsConsDiscusserDto,
   SummarizationDto,
@@ -63,5 +65,9 @@ export class GptService {
       );
 
     return folderPath;
+  }
+
+  async audioToText({ prompt, file }: AudioToTextDto) {
+    return await audioToTextUseCase(this.openai, { prompt, file });
   }
 }
