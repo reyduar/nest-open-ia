@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import OpenAI from 'openai';
 import {
-  orthographyUseCases,
+  orthographyMarkdownUseCases,
   prosConsDicusserUseCase,
   prosConsDicusserStreamUseCase,
   summarizationUseCases,
@@ -27,7 +27,7 @@ export class GptService {
   });
 
   async orthographyCheck(orthographyDto: OrthographyDto) {
-    return await orthographyUseCases(this.openai, {
+    return await orthographyMarkdownUseCases(this.openai, {
       prompt: orthographyDto.prompt,
     });
   }
