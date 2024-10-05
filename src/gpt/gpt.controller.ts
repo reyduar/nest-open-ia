@@ -22,6 +22,7 @@ import {
   TextToAudioDto,
   TranslateDto,
   AudioToTextDto,
+  ImageGenerationDto,
 } from './dtos';
 import { diskStorage } from 'multer';
 
@@ -119,5 +120,21 @@ export class GptController {
   ) {
     const audioToTextDto = new AudioToTextDto(file, prompt);
     return this.gptService.audioToText(audioToTextDto);
+  }
+
+  @Post('image-generation')
+  async imageGeneration(@Body() imageGenerationDto: ImageGenerationDto) {
+    return await this.gptService.imageGeneration(imageGenerationDto);
+  }
+
+  @Get('image-generated/:fileName')
+  async getImageGenerated(
+    @Param('fileName') fileName: string,
+    @Res() res: Response,
+  ) {
+    const filePath = await this.gptService.getImageGenerated(fileName);
+    res.setHeader('Content-Type', 'image/png');
+    res.status(HttpStatus.OK);
+    res.sendFile(filePath);
   }
 }

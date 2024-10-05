@@ -10,7 +10,7 @@ export const orthographyMarkdownUseCases = async (
   const { prompt } = options;
 
   const completion = await openai.chat.completions.create({
-    model: 'gpt-4o-mini',
+    model: 'gpt-4o-mini-2024-07-18',
     temperature: 0.2,
     max_tokens: 1000,
     messages: [
