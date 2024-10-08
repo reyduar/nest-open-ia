@@ -11,6 +11,7 @@ import {
   textToAudioUseCase,
   audioToTextUseCase,
   imageGenerationUseCase,
+  imageVariationUseCase,
 } from './use-cases';
 import {
   AudioToTextDto,
@@ -20,6 +21,7 @@ import {
   TextToAudioDto,
   TranslateDto,
   ImageGenerationDto,
+  ImageVariationDto,
 } from './dtos';
 
 @Injectable()
@@ -92,5 +94,11 @@ export class GptService {
       );
 
     return folderPath;
+  }
+
+  async generateImageVariation({ baseImage }: ImageVariationDto) {
+    return await imageVariationUseCase(this.openai, {
+      baseImage,
+    });
   }
 }

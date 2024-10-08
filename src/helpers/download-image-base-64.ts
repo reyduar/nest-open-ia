@@ -2,7 +2,10 @@ import * as path from 'path';
 import * as fs from 'fs';
 import sharp from 'sharp';
 
-export const downloadBase64ImageAsPng = async (base64Image: string) => {
+export const downloadBase64ImageAsPng = async (
+  base64Image: string,
+  fullPath: boolean = false,
+) => {
   // Remover encabezado
   base64Image = base64Image.split(';base64,').pop();
   const imageBuffer = Buffer.from(base64Image, 'base64');
@@ -11,12 +14,10 @@ export const downloadBase64ImageAsPng = async (base64Image: string) => {
   fs.mkdirSync(folderPath, { recursive: true });
 
   const imageNamePng = `${new Date().getTime()}-64.png`;
+  const completePath = path.join(folderPath, imageNamePng);
 
   // Transformar a RGBA, png // Así lo espera OpenAI
-  await sharp(imageBuffer)
-    .png()
-    .ensureAlpha()
-    .toFile(path.join(folderPath, imageNamePng));
+  await sharp(imageBuffer).png().ensureAlpha().toFile(completePath);
 
-  return imageNamePng;
+  return fullPath ? completePath : imageNamePng;
 };

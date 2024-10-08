@@ -23,6 +23,7 @@ import {
   TranslateDto,
   AudioToTextDto,
   ImageGenerationDto,
+  ImageVariationDto,
 } from './dtos';
 import { diskStorage } from 'multer';
 
@@ -45,9 +46,8 @@ export class GptController {
     @Body() prosConsDiscusserDto: ProsConsDiscusserDto,
     @Res() res: Response,
   ) {
-    const stream = await this.gptService.prosConsDicusserStream(
-      prosConsDiscusserDto,
-    );
+    const stream =
+      await this.gptService.prosConsDicusserStream(prosConsDiscusserDto);
     res.setHeader('Content-Type', 'application/json');
     res.status(HttpStatus.OK);
     for await (const chunk of stream) {
@@ -136,5 +136,10 @@ export class GptController {
     res.setHeader('Content-Type', 'image/png');
     res.status(HttpStatus.OK);
     res.sendFile(filePath);
+  }
+
+  @Post('image-variation')
+  async imageVariation(@Body() imageVariationDto: ImageVariationDto) {
+    return await this.gptService.generateImageVariation(imageVariationDto);
   }
 }
