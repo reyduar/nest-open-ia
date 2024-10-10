@@ -4,7 +4,7 @@ branch-defaults:
 environment-defaults:
   Damc-v0-api-env:
     branch: master
-    repository: https://github.com/reyduar/nest-open-ia
+    repository: https://github.com/reyduar/nest-open-ia.git
 global:
   application_name: damc-v0-api
   default_ec2_keyname: null
