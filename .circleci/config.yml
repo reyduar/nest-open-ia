@@ -33,11 +33,7 @@ jobs:
       - run:
           name: Deploying to Elastic Beanstalk
           command: |
-            if [ "${CIRCLE_BRANCH}" == "production" ]; then
-              eb deploy Damc-v0-api-prod
-            elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-              eb deploy Damc-v0-api-env
-            fi
+            eb deploy Damc-v0-api-env
 
 workflows:
   version: 2
@@ -51,4 +47,3 @@ workflows:
             branches:
               only:
                 - master
-                - production
