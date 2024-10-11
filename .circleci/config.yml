@@ -19,9 +19,6 @@ jobs:
           name: Build project
           command: yarn run build
       - run:
-          name: Fix permissions
-          command: sudo chmod -R 755 /var/app/current/dist
-      - run:
           name: Clean dist folder
           command: rm -rf dist
   deploy:
