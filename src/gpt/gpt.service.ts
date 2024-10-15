@@ -23,12 +23,19 @@ import {
   ImageGenerationDto,
   ImageVariationDto,
 } from './dtos';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class GptService {
-  private openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-  });
+  private openai: OpenAI;
+  constructor(
+    private readonly configService: ConfigService,
+  ) {
+    this.openai = new OpenAI({
+      apiKey: this.configService.get('OPENAI_API_KEY'),
+    });
+  }
+  
 
   async orthographyCheck(orthographyDto: OrthographyDto) {
     return await orthographyMarkdownUseCases(this.openai, {
