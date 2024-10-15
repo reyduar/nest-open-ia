@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  nestopenia:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nestopenia-docker
+    container_name: nestopenia
+    restart: always # reiniciar el contenedor si se detiene
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      PORT: ${PORT}
+      SERVER_URL: ${SERVER_URL}

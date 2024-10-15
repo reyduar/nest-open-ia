@@ -33,10 +33,16 @@ $ npm run start:prod
 ```bash
 # unit tests
 $ npm run test
+```
 
-# e2e tests
-$ npm run test:e2e
+## Docker
 
-# test coverage
-$ npm run test:cov
+```bash
+# Build
+$ docker-compose -f docker-compose.prod.yaml --env-file .env.prod up --build
+```
+
+```bash
+# Docker Run
+$ docker-compose -f docker-compose.prod.yaml --env-file .env.prod up -d
 ```
