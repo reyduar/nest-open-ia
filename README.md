@@ -46,3 +46,9 @@ $ docker-compose -f docker-compose.prod.yaml --env-file .env.prod up --build
 # Docker Run
 $ docker-compose -f docker-compose.prod.yaml --env-file .env.prod up -d
 ```
+
+## Health check
+
+```
+http://localhost:5793/health
+```
