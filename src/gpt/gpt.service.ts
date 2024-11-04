@@ -28,14 +28,11 @@ import { ConfigService } from '@nestjs/config';
 @Injectable()
 export class GptService {
   private openai: OpenAI;
-  constructor(
-    private readonly configService: ConfigService,
-  ) {
+  constructor(private readonly configService: ConfigService) {
     this.openai = new OpenAI({
       apiKey: this.configService.get('OPENAI_API_KEY'),
     });
   }
-  
 
   async orthographyCheck(orthographyDto: OrthographyDto) {
     return await orthographyMarkdownUseCases(this.openai, {
@@ -89,18 +86,12 @@ export class GptService {
   }
 
   async getImageGenerated(fileName: string) {
-    const folderPath = path.join(
-      __dirname,
-      `/../../generated/images/`,
-      `${fileName}.png`,
-    );
-    const wasFileFound = fs.existsSync(folderPath);
+    const filePath = path.resolve('./', './generated/images/', fileName);
+    const wasFileFound = fs.existsSync(filePath);
     if (!wasFileFound)
-      throw new NotFoundException(
-        `File ${fileName} on path ${folderPath} not found`,
-      );
+      throw new NotFoundException(`File ${fileName} not found`);
 
-    return folderPath;
+    return filePath;
   }
 
   async generateImageVariation({ baseImage }: ImageVariationDto) {
